@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" name="first-number" id="first-number" placeholder="first-number"><br><br>
+    <input type="text" name="second-number" id="second-number" placeholder="second-number"><br><br>
+    <button type="button" id="calculate-sum">Calculate Sum</button><br><br>
+
+    <div id="final-sum"></div>
+
+    <script>
+        const calculateSumBtn = document.getElementById('calculate-sum');
+        if (calculateSumBtn) {
+            calculateSumBtn.addEventListener('click', () => {
+                let firstNumber = document.getElementById('first-number');
+                let secondNumber = document.getElementById('second-number');
+
+                firstNumber = Number(firstNumber.value);
+                secondNumber = Number(secondNumber.value);
+
+                const sum = firstNumber + secondNumber;
+
+                document.getElementById('final-sum').innerHTML = `Sum : ${sum}`;
+            })
+        }
+    </script>
+</body>
+
+</html>
