@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -15,20 +16,23 @@
     <div id="final-sum"></div>
 
     <script>
-        const calculateSumBtn = document.getElementById('calculate-sum');
-        if (calculateSumBtn) {
-            calculateSumBtn.addEventListener('click', () => {
-                let firstNumber = document.getElementById('first-number');
-                let secondNumber = document.getElementById('second-number');
 
-                firstNumber = Number(firstNumber.value);
-                secondNumber = Number(secondNumber.value);
+        const displaySum = async () => {
+            let firstNumber = document.getElementById('first-number').value;
+            let secondNumber = document.getElementById('second-number').value;
 
-                const sum = firstNumber + secondNumber;
+            url = `https://sum-server.100xdevs.com/sum?a=${firstNumber}&b=${secondNumber}`;
+            const result = await axios.get(url);
 
-                document.getElementById('final-sum').innerHTML = `Sum : ${sum}`;
-            })
+            if (result.status == 200) {
+                console.log(result);
+                document.getElementById('final-sum').innerHTML = `Sum : ${result.data}`;
+            } else {
+                document.getElementById('final-sum').innerHTML = `Internal issue`;
+            }
         }
+
+        document.getElementById('calculate-sum')?.addEventListener('click', displaySum);
     </script>
 </body>
 
