@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Foundation</title>
+</head>
+
+<body>
+    <input type="text" placeholder="title" id="title"><br><br>
+    <input type="text" placeholder="description" id="description"><br><br>
+    <button type="button" id="add-todo-btn">Add TODO</button>
+    <div id="todo-container"></div>
+
+    <script>
+        function markTodoDone (){
+            this.innerHTML = "Done";
+        }
+        const addTodo = () => {
+            const titleText = document.getElementById('title')?.value;
+            const descriptionText = document.getElementById('description')?.value;
+
+            console.log(`Todo Title: ${titleText}\nTodo Description: ${descriptionText}`);
+
+            const outerDiv = document.createElement('div');
+            const titleDiv = document.createElement('div');
+            titleDiv.innerHTML = titleText;
+            const descriptionDiv = document.createElement('div');
+            descriptionDiv.innerHTML = descriptionText
+            const buttonDiv = document.createElement('button');
+            buttonDiv.innerHTML = 'Mark as complete'
+            buttonDiv.addEventListener('click', markTodoDone);
+
+            outerDiv.appendChild(titleDiv);
+            outerDiv.appendChild(descriptionDiv);
+            outerDiv.appendChild(buttonDiv);
+            // outerDiv.appendChild(document.createElement('br'));
+
+            document.getElementById('todo-container')?.appendChild(outerDiv);
+        }
+
+        document.getElementById('add-todo-btn')?.addEventListener('click', addTodo);
+    </script>
+</body>
+
+</html>
