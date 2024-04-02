@@ -9,13 +9,22 @@
 </head>
 
 <body>
-    <input type="text" name="first-number" id="first-number" placeholder="first-number"><br><br>
-    <input type="text" name="second-number" id="second-number" placeholder="second-number"><br><br>
-    <button type="button" id="calculate-sum">Calculate Sum</button><br><br>
+    <input oninput="debouncedDisplaySum()" type="text" name="first-number" id="first-number"
+        placeholder="first-number"><br><br>
+    <input oninput="debouncedDisplaySum()" type="text" name="second-number" id="second-number"
+        placeholder="second-number"><br><br>
+    <!-- <button type="button" id="calculate-sum">Calculate Sum</button><br><br> -->
 
     <div id="final-sum"></div>
 
     <script>
+        let timeOut;
+        const debouncedDisplaySum = () => {
+            clearTimeout(timeOut);
+            timeOut = setTimeout(() => {
+                displaySum();
+            }, 1000);
+        }
 
         const displaySum = async () => {
             let firstNumber = document.getElementById('first-number').value;
