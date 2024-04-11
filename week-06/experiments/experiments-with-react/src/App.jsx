@@ -1,40 +1,59 @@
 import { useState } from "react";
 
+const initialTodos = [
+  {
+    id: 1,
+    title: "go to gym",
+    description: "go to gym today",
+  },
+  {
+    id: 2,
+    title: "go to office",
+    description: "go to office today",
+  },
+  {
+    id: 3,
+    title: "go to club",
+    description: "go to club today",
+  },
+];
+
+let idCount = 4;
+
 function App() {
-  const [count, setCount] = useState(0);
+  const [todos, setTodos] = useState(initialTodos);
 
-  return (
-    <div>
-      <HeadersWithButton/>
-      <Text inputName={"Akash"}></Text>
-      <br />
-    </div>
-  );
-}
+  const addTodo = () => {
+    setTodos([
+      ...todos,
+      {
+        id: idCount,
+        title: "go to park",
+        description: "go to park today",
+      },
+    ]);
 
-
-
-const HeadersWithButton = () => {
-  const [name, setName] = useState("Akash");
-
-  const changeName = () => {
-    return setName(String(Math.random()));
+    console.log(`Counter value is ${idCount}`);
+    idCount = idCount + 1;
   };
 
   return (
     <>
-      <button type="button" onClick={changeName}>
-        Click me
-      </button>
-      <br />
-      <Text inputName={name}></Text>
-      <br />
+    <button type="button" onClick={addTodo}>Add Todo</button>
+      {todos.map((todo) => (
+        <Todo key={todo.id} {...todo}></Todo>
+      ))}
     </>
   );
-};
+}
 
-const Text = ({ inputName }) => {
-  return <div>My name is {inputName}</div>;
+const Todo = ({ title, description, id }) => {
+  return (
+    <div>
+      <h1>{title}</h1>
+      <h5>{description}</h5>
+    </div>
+  );
 };
 
 export default App;
