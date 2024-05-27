@@ -21,4 +21,6 @@ const user: User = {
     age: 23,
 }
 
+console.log(user);
 console.log(isLegal(user));
+
