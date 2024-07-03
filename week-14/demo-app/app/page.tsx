@@ -6,9 +6,7 @@ const delay = (delayInms: any) => {
 
 async function getUserDetails() {
   // let delayResonse = await delay(3000);
-  const response = await axios.get(
-    'https://week-13-offline.kirattechnologies.workers.dev/api/v1/user/details'
-  );
+  const response = await axios.get('http://127.0.0.1:3000/api/user');
   return response.data;
 }
 
